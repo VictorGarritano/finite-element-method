@@ -9,13 +9,13 @@ def global2local(EQ_vector, L2G_matrix):
     #nodes in each element.
     nodes_per_elem, elem_n = L2G_matrix.shape
 
-    #get the total numbers of nodes that generate equations.
+    #get the total number of nodes that generate equations.
     eq_n = EQ_vector[-1]
 
     #initialize global matrix K.
     K = np.zeros((eq_n, eq_n))
 
-    #for python reasons, the fisrt index of an array is 0.
+    #for python reasons, the first index of an array is 0.
     #We model the problem starting with 1 everywhere...
     #but we will take advantage of this further up.
     EQ_vector -= 1
