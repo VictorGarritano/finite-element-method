@@ -1,7 +1,7 @@
 import numpy as np
 import itertools
 
-def global2local(EQ_vector, L2G_matrix):
+def global2local(local_matrix, EQ_vector, L2G_matrix):
     """Generate the local matrix, and assembly the global matrix iteratively.
     Just a toy example for 2D-finite-element method.
     """
@@ -34,11 +34,10 @@ def global2local(EQ_vector, L2G_matrix):
             i = EQ_vector[aux1]
             j = EQ_vector[aux2]
 
-            #On this toy example, we don't generate the local matrix,
-            #because we are considering every local matrix as a
+            #On this toy example, we are considering every local matrix as a
             #np.ones((nodes_per_elem, nodes_per_elem)) matrix.
             if i != -1 and j != -1:
-                K[i][j] += 1
+                K[i][j] += local_matrix[x[0]][x[1]]
     return K
 
 EQ_vector = np.array([1,2,3,0,0,0,4,5,0,6,7,8])
@@ -51,6 +50,6 @@ L2G_matrix = np.array(
 [1,4,9,9,7,10]
 ]
 )
-
-K = global2local(EQ_vector, L2G_matrix)
+local_matrix = np.ones((4,4))
+K = global2local(local_matrix, EQ_vector, L2G_matrix)
 print(K)
