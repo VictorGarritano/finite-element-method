@@ -53,3 +53,4 @@ L2G_matrix = np.array(
 local_matrix = np.ones((4,4))
 K = global2local(local_matrix, EQ_vector, L2G_matrix)
 print(K)
+# print(K == K.T)
