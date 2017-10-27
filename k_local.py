@@ -1,8 +1,8 @@
 import numpy as np
 
-def gradient_interpolator(eta_bold):
+def gradient_interpolator(ksi_bold):
     """Matrix B"""
-    ksi, eta = eta_bold[0], eta_bold[1]
+    ksi, eta = ksi_bold[0], ksi_bold[1]
     grad_phi1 = [-0.25*(1-eta), -0.25*(1-ksi)]
     grad_phi2 = [0.25*(1-eta), -0.25*(1+ksi)]
     grad_phi3 = [0.25*(1+eta), 0.25*(1+ksi)]
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     ]).T
 
     Q = np.array([
-        [1,1],
-        [1,1]
+        [1,0],
+        [0,1]
     ])
     print(build_local_k(M,Q))
