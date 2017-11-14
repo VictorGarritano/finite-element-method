@@ -24,7 +24,7 @@ gauss_points = [[-np.sqrt(3)/3,-np.sqrt(3)/3],
                 [np.sqrt(3)/3, np.sqrt(3)/3],
                 [-np.sqrt(3)/3, np.sqrt(3)/3]]
 
-def build_local_k(M, Q):
+def build_local(M, Q, Q_ab):
     K_e = np.zeros((4,4))
     for p in gauss_points:
         B = gradient_interpolator(p)
