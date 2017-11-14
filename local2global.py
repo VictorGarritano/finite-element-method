@@ -40,17 +40,18 @@ def local2global(local_matrix, EQ_vector, L2G_matrix):
                 K[i][j] += local_matrix[x[0]][x[1]]
     return K
 
-EQ_vector = np.array([1,2,3,0,0,0,4,5,0,6,7,8])
+if __name__ == '__main__':
+    EQ_vector = np.array([1,2,3,0,0,0,4,5,0,6,7,8])
 
-L2G_matrix = np.array(
-[
-[2,5,6,3,2,8],
-[7,1,4,7,12,7],
-[3,3,3,8,11,11],
-[1,4,9,9,7,10]
-]
-)
-local_matrix = np.ones((4,4))
-K = local2global(local_matrix, EQ_vector, L2G_matrix)
-print(K)
-# print(K == K.T)
+    L2G_matrix = np.array(
+    [
+    [2,5,6,3,2,8],
+    [7,1,4,7,12,7],
+    [3,3,3,8,11,11],
+    [1,4,9,9,7,10]
+    ]
+    )
+    local_matrix = np.ones((4,4))
+    K = local2global(local_matrix, EQ_vector, L2G_matrix)
+    print(K)
+    # print(K == K.T)

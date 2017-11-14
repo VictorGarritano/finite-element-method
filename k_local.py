@@ -1,7 +1,7 @@
 import numpy as np
 
 def gradient_interpolator(ksi_bold):
-    """Matrix B"""
+    """B Matrix"""
     ksi, eta = ksi_bold[0], ksi_bold[1]
     grad_phi1 = [-0.25*(1-eta), -0.25*(1-ksi)]
     grad_phi2 = [0.25*(1-eta), -0.25*(1+ksi)]
@@ -31,7 +31,7 @@ def build_local_k(M, Q):
         J = jacobian(M, B)
         G = gamma(J)
         D = det_J(J)
-        K_e += B.dot(G.T).dot(Q).dot(G).dot(B.T)*D
+        K_e += (B @ G.T @ Q @ G @ B.T) * D
     return K_e
 
 if __name__ == '__main__':
