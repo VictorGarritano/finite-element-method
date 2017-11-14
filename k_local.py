@@ -21,8 +21,8 @@ det_J = lambda j: np.linalg.det(j)
 
 gauss_points = [[-np.sqrt(3)/3,-np.sqrt(3)/3],
                 [np.sqrt(3)/3, -np.sqrt(3)/3],
-                [-np.sqrt(3)/3, np.sqrt(3)/3],
-                [np.sqrt(3)/3, np.sqrt(3)/3]]
+                [np.sqrt(3)/3, np.sqrt(3)/3],
+                [-np.sqrt(3)/3, np.sqrt(3)/3]]
 
 def build_local_k(M, Q):
     K_e = np.zeros((4,4))
