@@ -228,15 +228,24 @@ if __name__ == '__main__':
     print('generating the final solution vector...')
     sols = prescribed
     sols[d_sols] = d
+
+    analytical = lambda x, y: np.sin(np.pi*x) * np.cos(np.pi*y)
+    analytical_solution = analytical(Z[:,0], Z[:,1])
+    error = np.linalg.norm(analytical_solution - sols)
+    print('l2-norm error {0}'.format(error))
     if plot:
         print('plotting...')
         import matplotlib.pyplot as plt
         from mpl_toolkits.mplot3d import Axes3D
-        fig = plt.figure(figsize=(14, 14))
+        fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
+        ax.set_xlabel('X axis')
+        ax.set_ylabel('Y axis')
+        ax.set_zlabel('Z axis')
 
         X, Y = Z[:,0], Z[:,1]
 
         ax.plot_trisurf(X, Y, sols)
         ax.view_init(20,35)
+        plt.title('l2-norm error {0}'.format(error))
         plt.show()
