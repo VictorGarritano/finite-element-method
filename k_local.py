@@ -24,7 +24,7 @@ gauss_points = [[-np.sqrt(3)/3,-np.sqrt(3)/3],
                 [np.sqrt(3)/3, np.sqrt(3)/3],
                 [-np.sqrt(3)/3, np.sqrt(3)/3]]
 
-def build_local(M, Q, Q_ab):
+def build_local(M, Q, Q_ab, f_on_nodes, prescribed_vals):
     K_e = np.zeros((4,4))
     for p in gauss_points:
         B = gradient_interpolator(p)
@@ -32,7 +32,8 @@ def build_local(M, Q, Q_ab):
         G = gamma(J)
         D = det_J(J)
         K_e += (B @ G.T @ Q @ G @ B.T) * D
-    return K_e
+    F_e = (Q_ab @ f_on_nodes) * D - (K_e @ prescribed_vals)
+    return K_e, F_e
 
 if __name__ == '__main__':
     M = np.array([
