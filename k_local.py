@@ -24,7 +24,37 @@ gauss_points = [[-np.sqrt(3)/3,-np.sqrt(3)/3],
                 [np.sqrt(3)/3, np.sqrt(3)/3],
                 [-np.sqrt(3)/3, np.sqrt(3)/3]]
 
-def build_local(M, Q, Q_ab, f_on_nodes, prescribed_vals):
+phi_1 = lambda ksi, eta: 0.25*(1-ksi)*(1-eta)
+phi_2 = lambda ksi, eta: 0.25*(1+ksi)*(1-eta)
+phi_3 = lambda ksi, eta: 0.25*(1+ksi)*(1+eta)
+phi_4 = lambda ksi, eta: 0.25*(1-ksi)*(1+eta)
+
+phis = np.array([
+    phi_1,
+    phi_2,
+    phi_3,
+    phi_4
+])
+
+def build_local(M, Q, Q_ab, f_on_nodes, prescribed_vals, flow_vals):
+    # from itertools import product
+    # tipo, flow = flow_vals
+    #
+    # flow_matrix = np.zeros((4,4))
+    # if tipo == 1:
+    #     eta = -1
+    #     pg = np.sqrt(3)/3
+    #     for x in product([0,1], repeat=2):
+    #         i, j = x
+    #         flow_matrix[i, j] = phis[i](-pg,eta)*phis[j](-pg,eta) +\
+    #          phis[i](pg, eta)*phis[j](pg, eta)
+    # elif tipo == 2:
+    #     pass
+    # elif tipo == 3:
+    #     pass
+    # else:
+    #     pass
+
     K_e = np.zeros((4,4))
     for p in gauss_points:
         B = gradient_interpolator(p)

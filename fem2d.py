@@ -202,6 +202,17 @@ def generate_EQ_vector(nodes_n, d_sols, verbose=False):
 
     return EQ_vector
 
+def solve(K, F, verbose=False):
+    d = np.linalg.solve(K, F)
+
+    if verbose:
+        print('solution')
+        for x in d:
+            print(x)
+        print('='*20)
+
+    return d
+
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
@@ -224,11 +235,10 @@ if __name__ == '__main__':
     EQ_vector = generate_EQ_vector(nnodes, d_sols)
     K, F = l2g(nodes, EQ_vector, G, Q_ab, f, prescribed)
     print('solving linear system...')
-    d = np.linalg.solve(K, F)
+    d = solve(K, F)
     print('generating the final solution vector...')
     sols = prescribed
     sols[d_sols] = d
-
     analytical = lambda x, y: np.sin(np.pi*x) * np.cos(np.pi*y)
     analytical_solution = analytical(Z[:,0], Z[:,1])
     error = np.linalg.norm(analytical_solution - sols)
